@@ -67,6 +67,15 @@ body {
   --card-pad: clamp(20px, 2.2vw, 32px);
   --frame: 8px 12px;
   --border: 1.5px;
+  --measure: 640px;
+
+  /* Motion */
+  --dur-base: .5s;
+  --ease-slide: cubic-bezier(.65,0,.25,1);
+
+  /* Layers */
+  --z-overlay: 50;
+  --z-panel: 60;
                 
 }
 

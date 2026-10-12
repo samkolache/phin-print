@@ -1,6 +1,8 @@
 .reviewRow {
     --row-w: calc(100vw - 2 * var(--space-5));
     --per-view: 2;
+    --unit: calc(var(--row-w) / (5 + var(--n)));
+    position: relative;
     display: flex;
     height: 500px;
     overflow: hidden;

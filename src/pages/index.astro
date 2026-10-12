@@ -5,7 +5,16 @@ import styles from './index.module.css'
 import FeaturedCard from '../components/featured-story/FeaturedCard.astro';
 import ReviewRow from '../components/review-row/ReviewRow';
 
+import { getImage } from 'astro:assets';
 import { reviewCards } from '../data/review';
+
+const reviews = await Promise.all(
+	reviewCards.map(async (review) => {
+		if (!review.cover) return review;
+		const { src } = await getImage({ src: review.cover, width: 1400, format: 'webp' });
+		return { ...review, cover: { ...review.cover, src } };
+	})
+);
 ---
 
 <Layout title='Phin Print'>
@@ -13,7 +22,7 @@ import { reviewCards } from '../data/review';
 		<FeaturedCard />
 		<h2>Latest reviews</h2>
 		<div>
-			<ReviewRow reviews={reviewCards} client:load />
+			<ReviewRow reviews={reviews} client:load />
 		</div>
 	</main>
 </Layout>
