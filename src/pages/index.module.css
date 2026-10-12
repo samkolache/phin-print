@@ -1,0 +1,7 @@
+.pageContainer {
+      padding: var(--space-5);
+}
+
+h2 {
+    font-size: 32px;
+}

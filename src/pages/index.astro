@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import styles from './index.module.css'
+
+import FeaturedCard from '../components/featured-story/FeaturedCard.astro';
 ---
 
 <Layout title='Phin Print'>
-	<main>
-		Hi
+	<main class={styles.pageContainer}>
+		<FeaturedCard />
+		<h2>Latest reviews</h2>
 	</main>
 </Layout>
