@@ -1,0 +1,148 @@
+.button {
+    padding: 0 20px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: var(--fw-medium);
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: var(--border) solid var(--text);
+    color: var(--text);
+}
+
+.primary {
+    background: var(--text);
+    color: var(--text-dark);
+    border: none;
+}
+
+.outline {
+    background: transparent;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.outline:hover,
+.outline:focus-visible,
+.outline[data-pour] {
+    color: var(--text-dark);
+    transition: color 0.3s 0.45s;
+
+    .fill {
+        height: 100%;
+        transform: translateY(0);
+        transition:
+            height 1.1s cubic-bezier(.45, .05, .35, 1),
+            transform 0.2s;
+    }
+}
+
+.clip {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0%;
+    transform: translateY(12px);
+    background-color: var(--text);
+    transition:
+        height 0.5s cubic-bezier(.65, 0, .25, 1),
+        transform 0.2s 0.45s;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 200%;
+    height: 11px;
+    animation: waveScroll 1.6s linear infinite;
+}
+
+.waveFront path {
+    fill: var(--text);
+}
+
+.waveBack {
+    animation-duration: 2.4s;
+    animation-direction: reverse;
+}
+
+.waveBack path {
+    fill: var(--text-secondary);
+}
+
+.steam {
+    position: absolute;
+    bottom: 100%;
+    left: var(--x);
+    width: 10px;
+    height: 24px;
+    margin-bottom: 4px;
+    opacity: 0;
+    pointer-events: none;
+    background: no-repeat center / contain
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 24'%3E%3Cpath d='M5 23 C0 17 10 13 5 7 C2 4 7 2 5 1' fill='none' stroke='%235E5F55' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.outline[data-full] .steam {
+    animation: steamRise 1.8s ease-out var(--d) infinite;
+}
+
+.label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.text {
+    border: none;
+    background: transparent;
+}
+
+.icon {
+    padding: 0px;
+    width: 48px;
+    border: none;
+    background-color: var(--white);
+}
+
+@keyframes waveScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes steamRise {
+    0% { opacity: 0; transform: translateY(6px) scaleY(0.7); }
+    25% { opacity: 0.85; }
+    100% { opacity: 0; transform: translateY(-26px) scaleY(1.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .outline,
+    .outline:hover,
+    .outline:focus-visible,
+    .outline[data-pour],
+    .outline .fill,
+    .outline:hover .fill,
+    .outline:focus-visible .fill,
+    .outline[data-pour] .fill {
+        transition: none;
+    }
+
+    .outline .wave,
+    .outline[data-full] .steam {
+        animation: none;
+    }
+}
