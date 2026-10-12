@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import styles from './index.module.css'
 
 import FeaturedCard from '../components/featured-story/FeaturedCard.astro';
-import BlogCard from '../components/blog-card/BlogCard.astro';
+import ReviewRow from '../components/review-row/ReviewRow';
+
+import { reviewCards } from '../data/review';
 ---
 
 <Layout title='Phin Print'>
@@ -11,7 +13,7 @@ import BlogCard from '../components/blog-card/BlogCard.astro';
 		<FeaturedCard />
 		<h2>Latest reviews</h2>
 		<div>
-			<BlogCard />
+			<ReviewRow reviews={reviewCards} client:load />
 		</div>
 	</main>
 </Layout>

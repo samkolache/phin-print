@@ -1,11 +1,22 @@
 .card {
+    flex: 1 1 0px;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+    transition: flex .7s cubic-bezier(.65,0,.25,1);
+}
+
+.open {
+    flex: 6 1 0px;
+}
+
+.inner {
+    height: 100%;
     padding: var(--space-6);
-    background-color: var(--card-1);
-    max-width: 630px;
-    min-height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: calc(var(--row-w) * 6 / (6 + var(--n) - 1));
 }
 
 .cardContent {
@@ -49,4 +60,8 @@
     color: var(--text-secondary);
     font-size: var(--fs-sm);
     gap: var(--space-2);
+}
+
+.caption {
+    font-size: var(--fs-md);
 }
