@@ -15,7 +15,7 @@ body {
 
     /* Root */
     --background: #BCB5A9;
-    --text: #30322E;
+    --text: #2F322D;
     --text-secondary: #5E5F55;
     --text-tertiary: #8E8C7E;
     --text-dark: #EBEAE2;
@@ -65,7 +65,8 @@ body {
   --space-9: 120px;
   --gutter: clamp(16px, 3vw, 42px);
   --card-pad: clamp(20px, 2.2vw, 32px);
-  --frame: 8px 12px;    
+  --frame: 8px 12px;
+  --border: 1.5px;
                 
 }
 

@@ -1,0 +1,58 @@
+---
+import styles from "./Button.module.css"
+
+interface Props {
+    variant?: "primary" | "outline" | "text" | "icon"
+}
+
+const { variant = "outline" } = Astro.props;
+const isOutline = variant === "outline";
+
+const wavePath = "M0 6 Q25 0 50 6 T100 6 T150 6 T200 6 V12 H0 Z";
+const steamWisps = [
+    { x: "28%", delay: "0s" },
+    { x: "48%", delay: "0.55s" },
+    { x: "68%", delay: "1.1s" },
+];
+---
+<button class:list={[styles.button, styles[variant]]} data-pour={isOutline || undefined}>
+    {isOutline && (
+        <span class={styles.clip} aria-hidden="true">
+            <span class={styles.fill}>
+                <svg class:list={[styles.wave, styles.waveBack]} viewBox="0 0 200 12" preserveAspectRatio="none">
+                    <path d={wavePath} />
+                </svg>
+                <svg class:list={[styles.wave, styles.waveFront]} viewBox="0 0 200 12" preserveAspectRatio="none">
+                    <path d={wavePath} />
+                </svg>
+            </span>
+        </span>
+    )}
+    {isOutline && steamWisps.map((wisp) => (
+        <span class={styles.steam} style={`--x: ${wisp.x}; --d: ${wisp.delay}`} aria-hidden="true"></span>
+    ))}
+    <span class={styles.label}><slot /></span>
+</button>
+
+<script>
+    // Must match the fill's height duration in Button.module.css
+    const POUR_MS = 1100;
+
+    document.querySelectorAll<HTMLElement>("[data-pour]").forEach((button) => {
+        let timer: ReturnType<typeof setTimeout> | undefined;
+
+        const start = () => {
+            clearTimeout(timer);
+            timer = setTimeout(() => { button.dataset.full = ""; }, POUR_MS);
+        };
+        const stop = () => {
+            clearTimeout(timer);
+            delete button.dataset.full;
+        };
+
+        button.addEventListener("mouseenter", start);
+        button.addEventListener("mouseleave", stop);
+        button.addEventListener("focusin", start);
+        button.addEventListener("focusout", stop);
+    });
+</script>

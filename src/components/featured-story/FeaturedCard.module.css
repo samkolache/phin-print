@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     background-color: #2F322D;
+    margin-bottom: var(--space-4);
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;

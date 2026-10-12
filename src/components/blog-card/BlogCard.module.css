@@ -1,0 +1,52 @@
+.card {
+    padding: var(--space-6);
+    background-color: var(--card-1);
+    max-width: 630px;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.rating {
+    font-size: var(--fs-score);
+    font-weight: var(--fw-bold);
+}
+
+.title {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+}
+
+.date {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+}
+
+.restInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    color: var(--text-secondary);
+}
+
+.blogInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.blogInfoDeets {
+    display: flex;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    gap: var(--space-2);
+}

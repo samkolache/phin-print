@@ -3,11 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import styles from './index.module.css'
 
 import FeaturedCard from '../components/featured-story/FeaturedCard.astro';
+import BlogCard from '../components/blog-card/BlogCard.astro';
 ---
 
 <Layout title='Phin Print'>
 	<main class={styles.pageContainer}>
 		<FeaturedCard />
 		<h2>Latest reviews</h2>
+		<div>
+			<BlogCard />
+		</div>
 	</main>
 </Layout>
