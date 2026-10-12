@@ -2,11 +2,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
 }
 
 html,
 body {
-  margin: 0;
   min-height: 100%;
 }
 
@@ -18,6 +18,7 @@ body {
     --text: #30322E;
     --text-secondary: #5E5F55;
     --text-tertiary: #8E8C7E;
+    --text-dark: #EBEAE2;
     --card-1: #C6BDA9;
     --card-2: #D2D1C6;
     --card-3: #E4E3DA;
@@ -73,4 +74,9 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: var(--font);
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
 }
