@@ -1,31 +1,33 @@
 ---
 import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
-import VietHistoryImg from '../../assets/feat-story.jpg';
+import { featuredStory } from '../../data/story';
+import FeaturedStory from './FeaturedStory';
+import Button from '../ui/button/Button';
 import styles from './FeaturedCard.module.css';
 ---
 
-<div class={styles.card}>
-    <div class={styles.media}>
-        <Image src={VietHistoryImg} alt="People working with coffee beans" class={styles.image} />
-    </div>
-
-    <div class={styles.body}>
-        <div class={styles.meta}>
-            <div class={styles.info}>
-                <div class={styles.tag}>Featured</div>
-                <span class={styles.readTime}>History · 10 min</span>
-            </div>
-            <a href="/" class={styles.link}>
-                Read the story <ArrowRight size={18} class={styles.arrow} />
-            </a>
+<FeaturedStory story={featuredStory} client:load>
+    <div class={styles.card}>
+        <div class={styles.media}>
+            <Image src={featuredStory.cover} alt={featuredStory.coverAlt} class={styles.image} />
         </div>
 
-        <h2 class={styles.title}>
-            From mission gardens to the world’s No. 2: a short history of Vietnamese coffee
-        </h2>
-        <p class={styles.snippet}>
-            How a few French-planted arabica trees in 1857 became a robusta empire, a phin on every table, and a café culture built on condensed milk and patience. The story runs through colonial plantations in the Central Highlands, decades of war and rationing, and the Đổi Mới reforms of 1986 that turned a struggling crop into the country’s great export.
-        </p>
+        <div class={styles.body}>
+            <div class={styles.meta}>
+                <div class={styles.info}>
+                    <div class={styles.tag}>Featured</div>
+                    <span class={styles.readTime}>{featuredStory.topic} · {featuredStory.readTime}</span>
+                </div>
+                <div class={styles.link}>
+                    <Button variant="text">
+                        Read the story <ArrowRight size={18} class={styles.arrow} />
+                    </Button>
+                </div>
+            </div>
+
+            <h2 class={styles.title}>{featuredStory.title}</h2>
+            <p class={styles.snippet}>{featuredStory.snippet}</p>
+        </div>
     </div>
-</div>
+</FeaturedStory>

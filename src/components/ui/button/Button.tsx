@@ -4,10 +4,12 @@ import styles from "./Button.module.css"
 type Props = {
     variant?: "primary" | "outline" | "text" | "icon";
     pour?: boolean;
+    onClick?: () => void;
+    "aria-label"?: string;
     children: React.ReactNode;
 }
 
-// Must match the fill's height duration in Button.module.css
+
 const POUR_MS = 1100;
 
 const wavePath = "M0 6 Q25 0 50 6 T100 6 T150 6 T200 6 V12 H0 Z";
@@ -17,7 +19,7 @@ const steamWisps = [
     { x: "68%", delay: "1.1s" },
 ];
 
-export default function Button({ variant = "outline", pour = false, children }: Props) {
+export default function Button({ variant = "outline", pour = false, onClick, "aria-label": ariaLabel, children }: Props) {
     const isOutline = variant === "outline";
 
     const [isFull, setIsFull] = useState(false);
@@ -49,6 +51,9 @@ export default function Button({ variant = "outline", pour = false, children }: 
 
     return (
         <button
+            type="button"
+            onClick={onClick}
+            aria-label={ariaLabel}
             className={`${styles.button} ${styles[variant]}`}
             data-pour={isOutline && pour ? "" : undefined}
             data-full={isFull ? "" : undefined}

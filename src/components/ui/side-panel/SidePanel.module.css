@@ -1,0 +1,69 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--overlay);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-base);
+}
+
+.overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-panel);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel);
+    color: var(--text);
+    outline: none;
+    transform: translateX(101%);
+    visibility: hidden;
+    transition:
+        transform .6s var(--ease-slide),
+        visibility 0s .6s;
+
+    @media (max-width: 860px) {
+        width: 100%;
+    }
+}
+
+.panel.open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform .6s var(--ease-slide);
+}
+
+.topBar {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: var(--space-7) var(--gutter) 22px;
+}
+
+.close {
+    margin-left: auto;
+}
+
+.scroll {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 var(--gutter) 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .overlay,
+    .panel,
+    .panel.open {
+        transition: none;
+    }
+}
