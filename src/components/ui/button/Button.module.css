@@ -26,7 +26,8 @@
 }
 
 .outline:hover,
-.outline:focus-visible {
+.outline:focus-visible,
+.outline[data-pour] {
     color: var(--text-dark);
     transition: color 0.3s 0.45s;
 
@@ -132,9 +133,11 @@
     .outline,
     .outline:hover,
     .outline:focus-visible,
+    .outline[data-pour],
     .outline .fill,
     .outline:hover .fill,
-    .outline:focus-visible .fill {
+    .outline:focus-visible .fill,
+    .outline[data-pour] .fill {
         transition: none;
     }
 

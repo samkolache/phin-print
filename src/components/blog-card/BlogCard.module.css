@@ -3,6 +3,7 @@
     min-width: 0;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
     transition: flex .7s cubic-bezier(.65,0,.25,1);
 }
 

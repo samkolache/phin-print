@@ -1,6 +1,7 @@
 import styles from './BlogCard.module.css'
 import Button from '../ui/button/Button';
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 
 import type { ReviewCard } from '../../data/review'
 
@@ -12,6 +13,8 @@ type Props = {
 }
 
 export default function BlogCard({review, isActive, onActivate,index}: Props) {
+    const [isHovered, setIsHovered] = useState(false);
+
     const dateFromReview = new Date(review.date);
 
     const fixedDate = dateFromReview.toLocaleDateString('en-US', {
@@ -24,7 +27,8 @@ export default function BlogCard({review, isActive, onActivate,index}: Props) {
 
     return (
         <div 
-        onMouseEnter={onActivate} 
+        onMouseEnter={() => { onActivate(); setIsHovered(true); }}
+        onMouseLeave={() => setIsHovered(false)}
         className={`${styles.card} ${isActive ? styles.open : ''}`}
         style={{ backgroundColor: `var(--card-${(index % 3) + 1})` }}
         >
@@ -47,7 +51,7 @@ export default function BlogCard({review, isActive, onActivate,index}: Props) {
                         <span className={styles.restName}>{review.restName}</span>
                     </div>
 
-                    <Button variant='outline'>
+                    <Button variant='outline' pour={isHovered}>
                         See review
                         <ArrowRight />
                     </Button>

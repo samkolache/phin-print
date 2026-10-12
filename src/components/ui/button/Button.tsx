@@ -3,6 +3,7 @@ import styles from "./Button.module.css"
 
 type Props = {
     variant?: "primary" | "outline" | "text" | "icon";
+    pour?: boolean;
     children: React.ReactNode;
 }
 
@@ -16,7 +17,7 @@ const steamWisps = [
     { x: "68%", delay: "1.1s" },
 ];
 
-export default function Button({ variant = "outline", children }: Props) {
+export default function Button({ variant = "outline", pour = false, children }: Props) {
     const isOutline = variant === "outline";
 
     const [isFull, setIsFull] = useState(false);
@@ -31,16 +32,30 @@ export default function Button({ variant = "outline", children }: Props) {
         setIsFull(false);
     };
 
-    useEffect(() => () => clearTimeout(timer.current), []);
+    // While the parent is driving the pour, the button's own hover is ignored
+    const enter = () => {
+        if (!pour) start();
+    };
+    const leave = () => {
+        if (!pour) stop();
+    };
+
+    useEffect(() => {
+        if (!isOutline) return;
+        if (pour) start();
+        else stop();
+        return () => clearTimeout(timer.current);
+    }, [pour, isOutline]);
 
     return (
         <button
             className={`${styles.button} ${styles[variant]}`}
+            data-pour={isOutline && pour ? "" : undefined}
             data-full={isFull ? "" : undefined}
-            onMouseEnter={isOutline ? start : undefined}
-            onMouseLeave={isOutline ? stop : undefined}
-            onFocus={isOutline ? start : undefined}
-            onBlur={isOutline ? stop : undefined}
+            onMouseEnter={isOutline ? enter : undefined}
+            onMouseLeave={isOutline ? leave : undefined}
+            onFocus={isOutline ? enter : undefined}
+            onBlur={isOutline ? leave : undefined}
         >
             {isOutline && (
                 <span className={styles.clip} aria-hidden="true">
