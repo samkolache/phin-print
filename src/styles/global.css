@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+
+:root {
+
+    /* Root */
+    --background: #BCB5A9;
+    --text: #30322E;
+    --text-secondary: #5E5F55;
+    --text-tertiary: #8E8C7E;
+    --card-1: #C6BDA9;
+    --card-2: #D2D1C6;
+    --card-3: #E4E3DA;
+    --panel: #D3D2C7;
+    --toogle-bg: #E0DFD5;
+    --white: #FFFFFF;
+    --overlay: rgba(110,110,100,0.5);
+
+    /* Type */
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 600;
+
+    --fs-xs: 13px;
+    --fs-sm: 15px;   
+    --fs-base: 17px; 
+    --fs-lg: 20px;   
+    --fs-xl: clamp(24px, 2.2vw, 34px); 
+    --fs-2xl: clamp(30px, 3vw, 46px);   
+    --fs-3xl: clamp(36px, 4vw, 60px);   
+    --fs-display: clamp(48px, 6.4vw, 84px);
+    --fs-score: clamp(36px, 3.4vw, 52px);
+    --fs-logo: 34px;
+
+    --lh-tight: 1.04;
+    --lh-snug: 1.2;
+    --lh-body: 1.5;
+
+    --ls-logo: -0.03em;
+    --ls-title: -0.035em;
+    --ls-display: -0.045em;
+    --ls-score: -0.05em;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 42px;
+  --space-8: 64px;
+  --space-9: 120px;
+  --gutter: clamp(16px, 3vw, 42px);
+  --card-pad: clamp(20px, 2.2vw, 32px);
+  --frame: 8px 12px;    
+                
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+}
